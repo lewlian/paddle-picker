@@ -85,8 +85,8 @@ export default function SearchPage() {
   return (
     <div className="max-w-7xl mx-auto px-4 py-8">
       <div className="mb-8">
-        <h1 className="text-3xl font-extrabold mb-2">🔍 Paddle Encyclopedia</h1>
-        <p className="text-gray-500">Search and filter through {paddles.length} paddles</p>
+        <h1 className="font-display text-3xl font-bold mb-2">🔍 Paddle Encyclopedia</h1>
+        <p className="text-[#6B6B6B]">Search and filter through {paddles.length} paddles</p>
       </div>
 
       {/* Search + Filter Toggle */}
@@ -97,14 +97,14 @@ export default function SearchPage() {
             placeholder="Search by name or brand..."
             value={query}
             onChange={e => setQuery(e.target.value)}
-            className="w-full pl-10 pr-4 py-3 rounded-xl border border-gray-200 focus:border-lime-400 focus:ring-2 focus:ring-lime-100 outline-none transition-all text-sm"
+            className="w-full pl-10 pr-4 py-3 rounded-full border border-[#1A4D2E]/10 bg-[#FFFDF9] focus:border-[#1A4D2E]/30 focus:ring-2 focus:ring-[#1A4D2E]/10 outline-none transition-all text-sm"
           />
-          <span className="absolute left-3 top-1/2 -translate-y-1/2 text-gray-400">🔍</span>
+          <span className="absolute left-3.5 top-1/2 -translate-y-1/2 text-[#6B6B6B]">🔍</span>
         </div>
         <button
           onClick={() => setShowFilters(!showFilters)}
-          className={`px-4 py-3 rounded-xl border text-sm font-medium transition-all ${
-            showFilters ? "bg-lime-500 text-white border-lime-500" : "border-gray-200 text-gray-600 hover:border-lime-300"
+          className={`px-5 py-3 rounded-full border text-sm font-medium transition-all ${
+            showFilters ? "bg-[#1A4D2E] text-white border-[#1A4D2E]" : "border-[#1A4D2E]/10 text-[#6B6B6B] hover:border-[#1A4D2E]/30 bg-[#FFFDF9]"
           }`}
         >
           ⚙️ Filters
@@ -124,7 +124,7 @@ export default function SearchPage() {
 
       {/* Sort */}
       <div className="flex items-center gap-3 mb-6 text-sm">
-        <span className="text-gray-400">Sort by:</span>
+        <span className="text-[#6B6B6B]">Sort by:</span>
         <div className="flex flex-wrap gap-1.5">
           {sortOptions.map(opt => (
             <button
@@ -135,8 +135,8 @@ export default function SearchPage() {
               }}
               className={`px-3 py-1 rounded-full text-xs font-medium transition-all ${
                 sortBy === opt.key
-                  ? "bg-lime-500 text-white"
-                  : "bg-gray-100 text-gray-600 hover:bg-lime-100"
+                  ? "bg-[#1A4D2E] text-white"
+                  : "bg-[#1A1A1A]/5 text-[#6B6B6B] hover:bg-[#1A4D2E]/10"
               }`}
             >
               {opt.label} {sortBy === opt.key && (sortDir === "asc" ? "↑" : "↓")}
@@ -146,7 +146,7 @@ export default function SearchPage() {
       </div>
 
       {/* Results count */}
-      <div className="text-sm text-gray-400 mb-4">{filtered.length} paddles found</div>
+      <div className="text-sm text-[#6B6B6B] mb-4">{filtered.length} paddles found</div>
 
       {/* Grid */}
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4">
@@ -155,28 +155,28 @@ export default function SearchPage() {
         ))}
       </div>
       {filtered.length > 60 && (
-        <p className="text-center text-gray-400 text-sm mt-6">Showing 60 of {filtered.length} — narrow your search to see more</p>
+        <p className="text-center text-[#6B6B6B] text-sm mt-6">Showing 60 of {filtered.length} — narrow your search to see more</p>
       )}
 
       {/* Detail Modal */}
       {selected && (
         <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/40 backdrop-blur-sm p-4" onClick={() => setSelected(null)}>
           <div
-            className="bg-white rounded-2xl shadow-2xl max-w-lg w-full max-h-[80vh] overflow-y-auto p-6 animate-slide-up"
+            className="bg-[#FFFDF9] rounded-3xl shadow-warm-lg max-w-lg w-full max-h-[80vh] overflow-y-auto p-6 animate-slide-up"
             onClick={e => e.stopPropagation()}
           >
             <div className="mb-4">
               <div className="flex items-start justify-between mb-3">
                 <div>
-                  <div className="text-xs font-medium text-lime-600 uppercase tracking-wide">{selected.brand}</div>
-                  <h2 className="text-xl font-bold">{selected.paddle_name}</h2>
+                  <div className="text-xs font-semibold text-[#1A4D2E] uppercase tracking-wide">{selected.brand}</div>
+                  <h2 className="font-display text-xl font-bold">{selected.paddle_name}</h2>
                 </div>
-                <button onClick={() => setSelected(null)} className="text-gray-400 hover:text-gray-600 text-xl">✕</button>
+                <button onClick={() => setSelected(null)} className="text-[#6B6B6B] hover:text-[#1A1A1A] text-xl">✕</button>
               </div>
               <PaddleImage src={selected.image_url} alt={`${selected.brand} ${selected.paddle_name}`} height={200} />
               <button
                 onClick={() => addToCompare(selected)}
-                className="mt-3 w-full inline-flex items-center justify-center gap-2 bg-lime-500 text-white font-semibold px-4 py-2.5 rounded-xl hover:bg-lime-600 transition-colors text-sm"
+                className="mt-3 w-full inline-flex items-center justify-center gap-2 bg-[#1A4D2E] text-white font-semibold px-4 py-2.5 rounded-full hover:bg-[#153D24] transition-colors text-sm"
               >
                 ⚖️ Add to Compare
               </button>
@@ -186,8 +186,8 @@ export default function SearchPage() {
                 const val = selected[key];
                 if (!val || val === "") return null;
                 return (
-                  <div key={key} className="flex justify-between py-2 border-b border-gray-50">
-                    <span className="text-sm text-gray-500">
+                  <div key={key} className="flex justify-between py-2 border-b border-[#1A4D2E]/5">
+                    <span className="text-sm text-[#6B6B6B]">
                       {getStatTooltip(key) ? (
                         <Tooltip text={getStatTooltip(key)!}>{statLabels[key]}</Tooltip>
                       ) : statLabels[key]}
@@ -213,7 +213,7 @@ function Select({ label, value, onChange, options }: { label: string; value: str
     <select
       value={value}
       onChange={e => onChange(e.target.value)}
-      className="w-full px-3 py-2.5 rounded-xl border border-gray-200 text-sm text-gray-700 focus:border-lime-400 focus:ring-2 focus:ring-lime-100 outline-none bg-white"
+      className="w-full px-3 py-2.5 rounded-full border border-[#1A4D2E]/10 text-sm text-[#1A1A1A] focus:border-[#1A4D2E]/30 focus:ring-2 focus:ring-[#1A4D2E]/10 outline-none bg-[#FFFDF9]"
     >
       <option value="">{label} (All)</option>
       {options.map(o => <option key={o} value={o}>{o}</option>)}

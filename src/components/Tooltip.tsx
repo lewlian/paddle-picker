@@ -27,11 +27,11 @@ export default function Tooltip({ text, children }: TooltipProps) {
       onTouchStart={() => setShow(!show)}
     >
       {children}
-      <span className="text-gray-400 text-[10px]">ⓘ</span>
+      <span className="text-[#6B6B6B] text-[10px]">ⓘ</span>
       {show && (
-        <span className="absolute bottom-full left-1/2 -translate-x-1/2 mb-2 w-64 p-3 bg-gray-900 text-white text-xs leading-relaxed rounded-xl shadow-lg z-50 pointer-events-none animate-fade-in">
+        <span className="absolute bottom-full left-1/2 -translate-x-1/2 mb-2 w-64 p-3 bg-[#1A4D2E] text-white text-xs leading-relaxed rounded-xl shadow-lg z-50 pointer-events-none animate-fade-in">
           {text}
-          <span className="absolute top-full left-1/2 -translate-x-1/2 border-4 border-transparent border-t-gray-900" />
+          <span className="absolute top-full left-1/2 -translate-x-1/2 border-4 border-transparent border-t-[#1A4D2E]" />
         </span>
       )}
     </span>

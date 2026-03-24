@@ -24,23 +24,30 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" className={`${geistSans.variable} ${geistMono.variable} h-full antialiased`}>
-      <body className="min-h-full flex flex-col bg-white text-gray-900">
-        <nav className="sticky top-0 z-50 bg-white/80 backdrop-blur-md border-b border-gray-100">
-          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-14 flex items-center justify-between">
-            <a href="/" className="flex items-center gap-2 font-bold text-lg hover:opacity-80 transition-opacity">
+      <body className="min-h-full flex flex-col bg-[#FAF6F0] text-[#1A1A1A]">
+        <nav className="sticky top-0 z-50 bg-[#FAF6F0]/80 backdrop-blur-md border-b border-[#1A4D2E]/5">
+          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between">
+            <a href="/" className="flex items-center gap-2 hover:opacity-80 transition-opacity">
               <span className="text-2xl">🥒</span>
-              <span>Wikipickle</span>
+              <span className="font-display font-bold text-xl text-[#1A1A1A]">Wikipickle</span>
             </a>
-            <div className="flex items-center gap-6 text-sm font-medium text-gray-600">
-              <a href="/search" className="hover:text-lime-600 transition-colors">Search</a>
-              <a href="/compare" className="hover:text-lime-600 transition-colors">Compare</a>
-              <a href="/quiz" className="hover:text-lime-600 transition-colors">Quiz</a>
+            <div className="flex items-center gap-6">
+              <div className="flex items-center gap-5 text-sm font-medium text-[#1A1A1A]">
+                <a href="/search" className="hover:text-[#1A4D2E] transition-colors">Search</a>
+                <a href="/compare" className="hover:text-[#1A4D2E] transition-colors">Compare</a>
+              </div>
+              <a
+                href="/quiz"
+                className="bg-[#1A4D2E] text-white text-sm font-semibold px-5 py-2 rounded-full hover:bg-[#153D24] transition-colors"
+              >
+                Take Quiz
+              </a>
             </div>
           </div>
         </nav>
         <main className="flex-1">{children}</main>
-        <footer className="border-t border-gray-100 py-6 text-center text-sm text-gray-400">
-          🥒 Wikipickle — Built for pickleball lovers
+        <footer className="border-t border-[#1A4D2E]/5 py-8 text-center text-sm text-[#6B6B6B]">
+          <span className="font-display">🥒 Wikipickle</span> — Built for pickleball lovers ✦
         </footer>
       </body>
     </html>

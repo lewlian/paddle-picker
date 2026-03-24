@@ -107,16 +107,14 @@ function scorePaddle(p: Paddle, answers: Answers): number {
 
   // Skill level
   if (answers.skill === "beginner") {
-    // Beginners want forgiveness: high TW, wider shapes, thicker cores
     if (tw >= 6) score += 3;
     if (thickness >= 16) score += 2;
     if (p.shape.trim() === "Widebody") score += 2;
-    if (sw < 115) score += 1; // lighter swing
+    if (sw < 115) score += 1;
   } else if (answers.skill === "intermediate") {
     if (tw >= 5.5) score += 2;
     if (thickness >= 14) score += 1;
   } else if (answers.skill === "advanced" || answers.skill === "pro") {
-    // More specialized is fine
     score += 1;
   }
 
@@ -137,10 +135,10 @@ function scorePaddle(p: Paddle, answers: Answers): number {
 
   // Game type
   if (answers.game === "singles") {
-    if (sw >= 115) score += 2; // more power for singles
-    if (p.shape.trim() === "Elongated") score += 1; // reach
+    if (sw >= 115) score += 2;
+    if (p.shape.trim() === "Elongated") score += 1;
   } else if (answers.game === "doubles") {
-    if (tw >= 6) score += 2; // maneuverability at net
+    if (tw >= 6) score += 2;
     if (sw <= 118) score += 1;
   }
 
@@ -198,6 +196,8 @@ function getRecommendationDescription(answers: Answers): string {
   return `Based on your answers, you'd do best with ${parts.join(", ")}. Here are our top picks:`;
 }
 
+const resultCardColors = ["bg-[#F2B63C]/20", "bg-[#A8D4E6]/20", "bg-[#E8845C]/20", "bg-[#F2B63C]/10", "bg-[#A8D4E6]/10"];
+
 export default function QuizPage() {
   const [step, setStep] = useState(0);
   const [answers, setAnswers] = useState<Answers>({});
@@ -233,26 +233,26 @@ export default function QuizPage() {
       <div className="max-w-3xl mx-auto px-4 py-8 animate-fade-in">
         <div className="text-center mb-8">
           <div className="text-5xl mb-4">🎉</div>
-          <h1 className="text-3xl font-extrabold mb-4">Your Perfect Paddles</h1>
-          <p className="text-gray-500 max-w-xl mx-auto">{getRecommendationDescription(answers)}</p>
+          <h1 className="font-display text-3xl font-bold mb-4">Your Perfect Paddles</h1>
+          <p className="text-[#6B6B6B] max-w-xl mx-auto">{getRecommendationDescription(answers)}</p>
         </div>
         <div className="space-y-4">
           {recommendations.map((p, i) => (
             <div key={i} className="animate-slide-up" style={{ animationDelay: `${i * 0.1}s` }}>
-              <div className="bg-white rounded-xl border border-gray-200 hover:border-lime-300 overflow-hidden transition-all hover:shadow-md">
+              <div className={`${resultCardColors[i]} rounded-3xl border border-[#1A4D2E]/8 overflow-hidden transition-all hover:shadow-warm-lg`}>
                 <div className="relative">
                   <PaddleImage src={p.image_url} alt={`${p.brand} ${p.paddle_name}`} height={140} />
-                  <div className="absolute top-3 left-3 w-8 h-8 rounded-full bg-lime-500 text-white font-bold flex items-center justify-center text-sm shadow">
+                  <div className="absolute top-3 left-3 w-8 h-8 rounded-full bg-[#1A4D2E] text-white font-bold flex items-center justify-center text-sm shadow">
                     {i + 1}
                   </div>
                 </div>
                 <div className="p-5">
-                  <div className="text-xs font-medium text-lime-600 uppercase tracking-wide">{p.brand}</div>
-                  <h3 className="font-bold text-lg text-gray-900">{p.paddle_name}</h3>
+                  <div className="text-xs font-semibold text-[#1A4D2E] uppercase tracking-wide">{p.brand}</div>
+                  <h3 className="font-display font-bold text-lg text-[#1A1A1A]">{p.paddle_name}</h3>
                   <div className="flex flex-wrap gap-1.5 mt-2 mb-3">
-                    {p.shape && <span className="text-xs px-2 py-0.5 rounded-full bg-gray-100 text-gray-600">{p.shape.trim()}</span>}
-                    {p.paddle_type && <span className="text-xs px-2 py-0.5 rounded-full bg-lime-50 text-lime-700">{p.paddle_type}</span>}
-                    {p.build_style && <span className="text-xs px-2 py-0.5 rounded-full bg-gray-100 text-gray-600">{p.build_style}</span>}
+                    {p.shape && <span className="text-xs px-2 py-0.5 rounded-full bg-[#1A1A1A]/5 text-[#6B6B6B]">{p.shape.trim()}</span>}
+                    {p.paddle_type && <span className="text-xs px-2 py-0.5 rounded-full bg-[#1A4D2E] text-white">{p.paddle_type}</span>}
+                    {p.build_style && <span className="text-xs px-2 py-0.5 rounded-full bg-[#1A1A1A]/5 text-[#6B6B6B]">{p.build_style}</span>}
                   </div>
                   <div className="grid grid-cols-3 sm:grid-cols-6 gap-3 text-center">
                     <Stat label="SW" val={p.swingweight} />
@@ -268,7 +268,7 @@ export default function QuizPage() {
           ))}
         </div>
         <div className="text-center mt-8">
-          <button onClick={restart} className="px-6 py-3 bg-lime-500 text-white rounded-full font-semibold hover:bg-lime-600 transition-colors">
+          <button onClick={restart} className="px-6 py-3 bg-[#1A4D2E] text-white rounded-full font-semibold hover:bg-[#153D24] transition-colors">
             🔄 Retake Quiz
           </button>
         </div>
@@ -282,13 +282,13 @@ export default function QuizPage() {
     <div className="max-w-2xl mx-auto px-4 py-8">
       {/* Progress */}
       <div className="mb-8">
-        <div className="flex justify-between text-xs text-gray-400 mb-2">
+        <div className="flex justify-between text-xs text-[#6B6B6B] mb-2">
           <span>Question {step + 1} of {questions.length}</span>
           <span>{Math.round(((step + 1) / questions.length) * 100)}%</span>
         </div>
-        <div className="h-2 bg-gray-100 rounded-full overflow-hidden">
+        <div className="h-2.5 bg-[#1A4D2E]/10 rounded-full overflow-hidden">
           <div
-            className="h-full bg-lime-500 rounded-full transition-all duration-500"
+            className="h-full bg-[#1A4D2E] rounded-full transition-all duration-500"
             style={{ width: `${((step + 1) / questions.length) * 100}%` }}
           />
         </div>
@@ -297,7 +297,7 @@ export default function QuizPage() {
       {/* Question */}
       <div className="text-center mb-8 animate-fade-in" key={step}>
         <div className="text-5xl mb-4">{q.emoji}</div>
-        <h2 className="text-2xl font-bold text-gray-900">{q.question}</h2>
+        <h2 className="font-display text-2xl font-bold text-[#1A1A1A]">{q.question}</h2>
       </div>
 
       {/* Options */}
@@ -306,14 +306,14 @@ export default function QuizPage() {
           <button
             key={opt.value}
             onClick={() => handleAnswer(q.id, opt.value)}
-            className={`w-full flex items-center gap-4 p-4 rounded-xl border text-left transition-all duration-200 hover:border-lime-400 hover:bg-lime-50 hover:shadow-md ${
+            className={`w-full flex items-center gap-4 p-4 rounded-2xl border-2 text-left transition-all duration-200 hover:border-[#1A4D2E] hover:bg-[#1A4D2E]/5 hover:shadow-warm ${
               answers[q.id] === opt.value
-                ? "border-lime-400 bg-lime-50 ring-2 ring-lime-200"
-                : "border-gray-200 bg-white"
+                ? "border-[#1A4D2E] bg-[#1A4D2E]/5 ring-2 ring-[#1A4D2E]/20"
+                : "border-[#1A4D2E]/10 bg-[#FFFDF9]"
             }`}
           >
             <span className="text-2xl">{opt.emoji}</span>
-            <span className="font-medium text-gray-800">{opt.label}</span>
+            <span className="font-medium text-[#1A1A1A]">{opt.label}</span>
           </button>
         ))}
       </div>
@@ -322,7 +322,7 @@ export default function QuizPage() {
       {step > 0 && (
         <button
           onClick={() => setStep(step - 1)}
-          className="mt-6 text-sm text-gray-400 hover:text-gray-600 transition-colors"
+          className="mt-6 text-sm text-[#6B6B6B] hover:text-[#1A1A1A] transition-colors"
         >
           ← Back
         </button>
@@ -334,8 +334,8 @@ export default function QuizPage() {
 function Stat({ label, val }: { label: string; val: string }) {
   return (
     <div>
-      <div className="text-[10px] text-gray-400 uppercase">{label}</div>
-      <div className="text-xs font-semibold text-gray-700">{val || "—"}</div>
+      <div className="text-[10px] text-[#6B6B6B]/70 uppercase">{label}</div>
+      <div className="text-xs font-semibold text-[#1A1A1A]/80">{val || "—"}</div>
     </div>
   );
 }
