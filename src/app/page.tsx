@@ -4,10 +4,47 @@ import { Paddle } from "@/types/paddle";
 
 const paddles = paddlesRaw as Paddle[];
 
-// Pick 4 popular paddles for the "Top Picks" section
-const topPicks = paddles
-  .filter(p => p.image_url && p.swingweight && p.twistweight && p.spin_rpm && p.power_mph)
-  .slice(0, 4);
+function num(v: string | undefined): number {
+  if (!v) return 0;
+  const n = parseFloat(v);
+  return isNaN(n) ? 0 : n;
+}
+
+// Paddles with full stats + images
+const complete = paddles.filter(p => p.image_url && p.swingweight && p.twistweight && p.spin_rpm && p.power_mph);
+
+// Best in Category picks
+const bestPower = [...complete].sort((a, b) => num(b.power_mph) - num(a.power_mph))[0];
+const bestControl = [...complete].sort((a, b) => {
+  // Control = high TW (forgiveness) + low SW (maneuverable)
+  const scoreA = num(a.twistweight) * 10 - num(a.swingweight);
+  const scoreB = num(b.twistweight) * 10 - num(b.swingweight);
+  return scoreB - scoreA;
+})[0];
+const bestSpin = [...complete].sort((a, b) => num(b.spin_rpm) - num(a.spin_rpm))[0];
+const bestAllRound = [...complete].sort((a, b) => {
+  // Balanced = decent in everything, normalize each stat
+  const sws = complete.map(p => num(p.swingweight));
+  const tws = complete.map(p => num(p.twistweight));
+  const spins = complete.map(p => num(p.spin_rpm));
+  const pows = complete.map(p => num(p.power_mph));
+  const pops = complete.map(p => num(p.pop_mph));
+  const norm = (v: number, arr: number[]) => {
+    const min = Math.min(...arr.filter(x => x > 0));
+    const max = Math.max(...arr);
+    return max === min ? 0.5 : (v - min) / (max - min);
+  };
+  const scoreA = norm(num(a.twistweight), tws) + norm(num(a.spin_rpm), spins) + norm(num(a.power_mph), pows) + norm(num(a.pop_mph), pops);
+  const scoreB = norm(num(b.twistweight), tws) + norm(num(b.spin_rpm), spins) + norm(num(b.power_mph), pows) + norm(num(b.pop_mph), pops);
+  return scoreB - scoreA;
+})[0];
+
+const topPicks = [
+  { paddle: bestPower, label: "🔥 Most Powerful", stat: `${bestPower?.power_mph} MPH`, color: "bg-[#E8845C]/10 text-[#E8845C]" },
+  { paddle: bestControl, label: "🎯 Best Control", stat: `TW: ${bestControl?.twistweight}`, color: "bg-[#A8D4E6]/30 text-[#1A4D2E]" },
+  { paddle: bestSpin, label: "🌀 Most Spin", stat: `${bestSpin?.spin_rpm} RPM`, color: "bg-[#F2B63C]/20 text-[#1A4D2E]" },
+  { paddle: bestAllRound, label: "⭐ Best All-Rounder", stat: "Top balanced stats", color: "bg-[#1A4D2E]/10 text-[#1A4D2E]" },
+].filter(p => p.paddle);
 
 export default function Home() {
   return (
@@ -95,32 +132,35 @@ export default function Home() {
           <span className="inline-flex items-center gap-1.5 bg-[#1A4D2E] text-white text-xs font-semibold px-3 py-1.5 rounded-full mb-3">
             ✦ Featured
           </span>
-          <h2 className="font-display text-3xl font-bold text-[#1A1A1A]">Top Picks</h2>
-          <p className="text-[#6B6B6B] mt-2">Popular paddles loved by players</p>
+          <h2 className="font-display text-3xl font-bold text-[#1A1A1A]">Best in Category</h2>
+          <p className="text-[#6B6B6B] mt-2">Top performers by the numbers</p>
         </div>
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5">
-          {topPicks.map((p, i) => (
+          {topPicks.map((pick, i) => (
             <div
               key={i}
               className="bg-[#FFFDF9] rounded-2xl border border-[#1A4D2E]/5 shadow-warm hover:shadow-warm-lg hover:-translate-y-1 transition-all duration-300 overflow-hidden"
             >
-              <div className="bg-[#FAF6F0] flex items-center justify-center" style={{ height: 150 }}>
-                {p.image_url ? (
-                  <img src={p.image_url} alt={`${p.brand} ${p.paddle_name}`} className="h-full w-full object-contain p-3" loading="lazy" />
+              <div className="bg-[#FAF6F0] flex items-center justify-center relative" style={{ height: 150 }}>
+                {pick.paddle.image_url ? (
+                  <img src={pick.paddle.image_url} alt={`${pick.paddle.brand} ${pick.paddle.paddle_name}`} className="h-full w-full object-contain p-3" loading="lazy" />
                 ) : (
                   <span className="text-4xl">🥒</span>
                 )}
               </div>
               <div className="p-4">
-                <div className="text-xs font-semibold text-[#1A4D2E] uppercase tracking-wide mb-1">{p.brand}</div>
-                <h3 className="font-bold text-sm text-[#1A1A1A] leading-tight mb-2">{p.paddle_name}</h3>
-                <div className="flex flex-wrap gap-1.5">
-                  {p.paddle_type && (
-                    <span className="text-[10px] px-2 py-0.5 rounded-full bg-[#1A4D2E] text-white font-medium">{p.paddle_type}</span>
-                  )}
-                  {p.shape && (
-                    <span className="text-[10px] px-2 py-0.5 rounded-full bg-[#1A1A1A]/5 text-[#6B6B6B]">{p.shape.trim()}</span>
-                  )}
+                <span className={`inline-block text-[10px] font-bold px-2.5 py-1 rounded-full mb-2 ${pick.color}`}>
+                  {pick.label}
+                </span>
+                <div className="text-xs font-semibold text-[#1A4D2E] uppercase tracking-wide mb-0.5">{pick.paddle.brand}</div>
+                <h3 className="font-bold text-sm text-[#1A1A1A] leading-tight mb-2">{pick.paddle.paddle_name}</h3>
+                <div className="flex items-center justify-between">
+                  <div className="flex flex-wrap gap-1.5">
+                    {pick.paddle.shape && (
+                      <span className="text-[10px] px-2 py-0.5 rounded-full bg-[#1A1A1A]/5 text-[#6B6B6B]">{pick.paddle.shape.trim()}</span>
+                    )}
+                  </div>
+                  <span className="text-[11px] font-bold text-[#1A4D2E]">{pick.stat}</span>
                 </div>
               </div>
             </div>
