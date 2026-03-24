@@ -13,7 +13,7 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "Paddle Picker 🏓 — Find Your Perfect Pickleball Paddle",
+  title: "Wikipickle 🏓 — The Pickleball Paddle Encyclopedia",
   description: "Search, compare, and discover your ideal pickleball paddle from 400+ paddles. Take our quiz to find the perfect match.",
 };
 
@@ -29,7 +29,7 @@ export default function RootLayout({
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-14 flex items-center justify-between">
             <a href="/" className="flex items-center gap-2 font-bold text-lg hover:opacity-80 transition-opacity">
               <span className="text-2xl">🏓</span>
-              <span>Paddle Picker</span>
+              <span>Wikipickle</span>
             </a>
             <div className="flex items-center gap-6 text-sm font-medium text-gray-600">
               <a href="/search" className="hover:text-lime-600 transition-colors">Search</a>
@@ -40,7 +40,7 @@ export default function RootLayout({
         </nav>
         <main className="flex-1">{children}</main>
         <footer className="border-t border-gray-100 py-6 text-center text-sm text-gray-400">
-          🏓 Paddle Picker — Built for pickleball lovers
+          🏓 Wikipickle — Built for pickleball lovers
         </footer>
       </body>
     </html>

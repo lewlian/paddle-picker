@@ -31,23 +31,29 @@ export default function Home() {
   return (
     <div>
       {/* Hero */}
-      <section className="relative overflow-hidden bg-gradient-to-br from-lime-500 via-green-500 to-emerald-600 text-white">
-        <div className="absolute inset-0 opacity-10">
-          <div className="absolute top-10 left-10 text-8xl animate-bounce-subtle">🏓</div>
-          <div className="absolute bottom-20 right-20 text-7xl animate-bounce-subtle stagger-2">🏓</div>
-          <div className="absolute top-1/2 left-1/2 text-6xl animate-bounce-subtle stagger-3">🏓</div>
+      <section className="relative overflow-hidden text-white">
+        <div className="absolute inset-0">
+          <img
+            src="/banner.png"
+            alt="Wikipickle banner"
+            className="w-full h-full object-cover"
+          />
+          <div className="absolute inset-0 bg-gradient-to-b from-black/60 via-black/50 to-black/70" />
         </div>
         <div className="relative max-w-4xl mx-auto px-4 py-24 sm:py-32 text-center">
-          <h1 className="text-4xl sm:text-6xl font-extrabold tracking-tight animate-fade-in">
-            Find Your Perfect Paddle
+          <h1 className="text-4xl sm:text-6xl font-extrabold tracking-tight animate-fade-in drop-shadow-lg">
+            Wikipickle
           </h1>
-          <p className="mt-6 text-lg sm:text-xl text-white/90 max-w-2xl mx-auto animate-fade-in stagger-1">
-            Search 400+ pickleball paddles, compare specs side-by-side, or take our quiz to discover your ideal match.
+          <p className="mt-2 text-xl sm:text-2xl font-semibold text-lime-300 animate-fade-in">
+            The Pickleball Paddle Encyclopedia
+          </p>
+          <p className="mt-4 text-lg sm:text-xl text-white/90 max-w-2xl mx-auto animate-fade-in stagger-1">
+            Search 400+ paddles, compare specs side-by-side, or take our quiz to discover your ideal match.
           </p>
           <div className="mt-10 flex flex-col sm:flex-row gap-4 justify-center animate-fade-in stagger-2">
             <Link
               href="/quiz"
-              className="inline-flex items-center justify-center gap-2 bg-white text-green-700 font-semibold px-8 py-3.5 rounded-full shadow-lg hover:shadow-xl hover:scale-105 transition-all duration-200"
+              className="inline-flex items-center justify-center gap-2 bg-lime-500 text-white font-semibold px-8 py-3.5 rounded-full shadow-lg hover:shadow-xl hover:bg-lime-400 hover:scale-105 transition-all duration-200"
             >
               🎯 Take the Quiz
             </Link>
