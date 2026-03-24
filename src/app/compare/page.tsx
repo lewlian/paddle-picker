@@ -2,6 +2,7 @@
 import { useState, useMemo, useRef, useEffect } from "react";
 import paddlesRaw from "@/data/paddles.json";
 import { Paddle, num, formatStat, statLabels } from "@/types/paddle";
+import { PaddleImage } from "@/components/PaddleCard";
 
 const paddles = paddlesRaw as Paddle[];
 
@@ -57,7 +58,7 @@ export default function ComparePage() {
 
   function getBestWorst(key: keyof Paddle): { bestIdx: number; worstIdx: number } | null {
     if (!numericStats.has(key) || selected.length < 2) return null;
-    const vals = selected.map(p => num(p[key]));
+    const vals = selected.map(p => num(p[key] ?? ""));
     if (vals.every(v => v === 0)) return null;
     const nonZero = vals.filter(v => v > 0);
     if (nonZero.length < 2) return null;
@@ -120,15 +121,18 @@ export default function ComparePage() {
             <div className="w-36 shrink-0" />
             {selected.map((p, idx) => (
               <div key={idx} className="w-44 shrink-0 text-center">
-                <div className="bg-gradient-to-br from-lime-50 to-green-50 rounded-xl p-4 border border-lime-200 relative">
+                <div className="bg-gradient-to-br from-lime-50 to-green-50 rounded-xl border border-lime-200 relative overflow-hidden">
                   <button
                     onClick={() => removePaddle(idx)}
-                    className="absolute -top-2 -right-2 w-6 h-6 bg-red-500 text-white rounded-full text-xs flex items-center justify-center hover:bg-red-600 transition-colors shadow"
+                    className="absolute top-1 right-1 z-10 w-6 h-6 bg-red-500 text-white rounded-full text-xs flex items-center justify-center hover:bg-red-600 transition-colors shadow"
                   >
                     ✕
                   </button>
-                  <div className="text-xs font-medium text-lime-600 uppercase">{p.brand}</div>
-                  <div className="text-sm font-bold text-gray-900 mt-1 leading-tight">{p.paddle_name}</div>
+                  <PaddleImage src={p.image_url} alt={`${p.brand} ${p.paddle_name}`} height={120} />
+                  <div className="p-3">
+                    <div className="text-xs font-medium text-lime-600 uppercase">{p.brand}</div>
+                    <div className="text-sm font-bold text-gray-900 mt-1 leading-tight">{p.paddle_name}</div>
+                  </div>
                 </div>
               </div>
             ))}

@@ -2,7 +2,7 @@
 import { useState, useMemo } from "react";
 import paddlesRaw from "@/data/paddles.json";
 import { Paddle, num, formatStat, statLabels } from "@/types/paddle";
-import PaddleCard from "@/components/PaddleCard";
+import PaddleCard, { PaddleImage } from "@/components/PaddleCard";
 
 const paddles = paddlesRaw as Paddle[];
 
@@ -148,12 +148,15 @@ export default function SearchPage() {
             className="bg-white rounded-2xl shadow-2xl max-w-lg w-full max-h-[80vh] overflow-y-auto p-6 animate-slide-up"
             onClick={e => e.stopPropagation()}
           >
-            <div className="flex items-start justify-between mb-4">
-              <div>
-                <div className="text-xs font-medium text-lime-600 uppercase tracking-wide">{selected.brand}</div>
-                <h2 className="text-xl font-bold">{selected.paddle_name}</h2>
+            <div className="mb-4">
+              <div className="flex items-start justify-between mb-3">
+                <div>
+                  <div className="text-xs font-medium text-lime-600 uppercase tracking-wide">{selected.brand}</div>
+                  <h2 className="text-xl font-bold">{selected.paddle_name}</h2>
+                </div>
+                <button onClick={() => setSelected(null)} className="text-gray-400 hover:text-gray-600 text-xl">✕</button>
               </div>
-              <button onClick={() => setSelected(null)} className="text-gray-400 hover:text-gray-600 text-xl">✕</button>
+              <PaddleImage src={selected.image_url} alt={`${selected.brand} ${selected.paddle_name}`} height={200} />
             </div>
             <div className="space-y-2">
               {detailKeys.map(key => {

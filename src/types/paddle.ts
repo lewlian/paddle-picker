@@ -19,6 +19,7 @@ export interface Paddle {
   spin_rpm: string;
   power_mph: string;
   pop_mph: string;
+  image_url?: string;
 }
 
 export function num(val: string): number {

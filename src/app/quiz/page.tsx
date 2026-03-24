@@ -2,7 +2,7 @@
 import { useState, useMemo } from "react";
 import paddlesRaw from "@/data/paddles.json";
 import { Paddle, num, formatStat, statLabels } from "@/types/paddle";
-import PaddleCard from "@/components/PaddleCard";
+import PaddleCard, { PaddleImage } from "@/components/PaddleCard";
 
 const paddles = paddlesRaw as Paddle[];
 
@@ -239,11 +239,14 @@ export default function QuizPage() {
         <div className="space-y-4">
           {recommendations.map((p, i) => (
             <div key={i} className="animate-slide-up" style={{ animationDelay: `${i * 0.1}s` }}>
-              <div className="flex items-start gap-4 bg-white rounded-xl border border-gray-200 hover:border-lime-300 p-5 transition-all hover:shadow-md">
-                <div className="flex-shrink-0 w-8 h-8 rounded-full bg-lime-500 text-white font-bold flex items-center justify-center text-sm">
-                  {i + 1}
+              <div className="bg-white rounded-xl border border-gray-200 hover:border-lime-300 overflow-hidden transition-all hover:shadow-md">
+                <div className="relative">
+                  <PaddleImage src={p.image_url} alt={`${p.brand} ${p.paddle_name}`} height={140} />
+                  <div className="absolute top-3 left-3 w-8 h-8 rounded-full bg-lime-500 text-white font-bold flex items-center justify-center text-sm shadow">
+                    {i + 1}
+                  </div>
                 </div>
-                <div className="flex-1">
+                <div className="p-5">
                   <div className="text-xs font-medium text-lime-600 uppercase tracking-wide">{p.brand}</div>
                   <h3 className="font-bold text-lg text-gray-900">{p.paddle_name}</h3>
                   <div className="flex flex-wrap gap-1.5 mt-2 mb-3">
