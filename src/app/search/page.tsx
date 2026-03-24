@@ -1,5 +1,6 @@
 "use client";
-import { useState, useMemo } from "react";
+import { useState, useMemo, useCallback } from "react";
+import { useRouter } from "next/navigation";
 import paddlesRaw from "@/data/paddles.json";
 import { Paddle, num, formatStat, statLabels } from "@/types/paddle";
 import PaddleCard, { PaddleImage } from "@/components/PaddleCard";
@@ -41,6 +42,21 @@ export default function SearchPage() {
   const [sortDir, setSortDir] = useState<"asc" | "desc">("asc");
   const [selected, setSelected] = useState<Paddle | null>(null);
   const [showFilters, setShowFilters] = useState(false);
+  const router = useRouter();
+
+  const addToCompare = useCallback((p: Paddle) => {
+    try {
+      const existing = JSON.parse(localStorage.getItem("comparePaddles") || "[]") as string[];
+      const key = `${p.brand}|||${p.paddle_name}`;
+      if (!existing.includes(key) && existing.length < 5) {
+        existing.push(key);
+        localStorage.setItem("comparePaddles", JSON.stringify(existing));
+      }
+      router.push("/compare");
+    } catch {
+      router.push("/compare");
+    }
+  }, [router]);
 
   const filtered = useMemo(() => {
     let result = paddles.filter(p => {
@@ -157,6 +173,12 @@ export default function SearchPage() {
                 <button onClick={() => setSelected(null)} className="text-gray-400 hover:text-gray-600 text-xl">✕</button>
               </div>
               <PaddleImage src={selected.image_url} alt={`${selected.brand} ${selected.paddle_name}`} height={200} />
+              <button
+                onClick={() => addToCompare(selected)}
+                className="mt-3 w-full inline-flex items-center justify-center gap-2 bg-lime-500 text-white font-semibold px-4 py-2.5 rounded-xl hover:bg-lime-600 transition-colors text-sm"
+              >
+                ⚖️ Add to Compare
+              </button>
             </div>
             <div className="space-y-2">
               {detailKeys.map(key => {
