@@ -34,7 +34,7 @@ export default function Home() {
       <section className="relative overflow-hidden text-white">
         <div className="absolute inset-0">
           <img
-            src="/banner.png"
+            src="/banner.jpg"
             alt="Wikipickle banner"
             className="w-full h-full object-cover"
           />
