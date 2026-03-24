@@ -17,7 +17,7 @@ function PaddleImage({ src, alt, height = 150 }: { src?: string; alt: string; he
         className="w-full flex items-center justify-center bg-gray-100 rounded-lg"
         style={{ height }}
       >
-        <span className="text-4xl">🏓</span>
+        <span className="text-4xl">🥒</span>
       </div>
     );
   }
@@ -39,7 +39,7 @@ function PaddleImage({ src, alt, height = 150 }: { src?: string; alt: string; he
             parent.classList.replace("bg-gray-50", "bg-gray-100");
             const emoji = document.createElement("span");
             emoji.className = "text-4xl";
-            emoji.textContent = "🏓";
+            emoji.textContent = "🥒";
             parent.appendChild(emoji);
           }
         }}

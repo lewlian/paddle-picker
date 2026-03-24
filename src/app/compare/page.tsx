@@ -204,7 +204,7 @@ export default function ComparePage() {
                     onError={e => { (e.target as HTMLImageElement).style.display = "none"; (e.target as HTMLImageElement).nextElementSibling?.classList.remove("hidden"); }}
                   />
                 ) : null}
-                <div className={`text-3xl ${p.image_url ? "hidden" : ""}`}>🏓</div>
+                <div className={`text-3xl ${p.image_url ? "hidden" : ""}`}>🥒</div>
               </div>
               <div className="p-3">
                 <div className="text-[10px] font-semibold text-lime-600 uppercase tracking-wide">{p.brand}</div>
