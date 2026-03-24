@@ -4,6 +4,7 @@ import { useRouter } from "next/navigation";
 import paddlesRaw from "@/data/paddles.json";
 import { Paddle, num, formatStat, statLabels } from "@/types/paddle";
 import PaddleCard, { PaddleImage } from "@/components/PaddleCard";
+import Tooltip, { getStatTooltip, getBuildStyleTooltip } from "@/components/Tooltip";
 
 const paddles = paddlesRaw as Paddle[];
 
@@ -186,8 +187,16 @@ export default function SearchPage() {
                 if (!val || val === "") return null;
                 return (
                   <div key={key} className="flex justify-between py-2 border-b border-gray-50">
-                    <span className="text-sm text-gray-500">{statLabels[key]}</span>
-                    <span className="text-sm font-medium">{formatStat(key, val)}</span>
+                    <span className="text-sm text-gray-500">
+                      {getStatTooltip(key) ? (
+                        <Tooltip text={getStatTooltip(key)!}>{statLabels[key]}</Tooltip>
+                      ) : statLabels[key]}
+                    </span>
+                    <span className="text-sm font-medium">
+                      {key === "build_style" && getBuildStyleTooltip(val) ? (
+                        <Tooltip text={getBuildStyleTooltip(val)!}>{formatStat(key, val)}</Tooltip>
+                      ) : formatStat(key, val)}
+                    </span>
                   </div>
                 );
               })}

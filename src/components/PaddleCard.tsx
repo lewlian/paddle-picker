@@ -1,5 +1,6 @@
 "use client";
 import { Paddle, num } from "@/types/paddle";
+import Tooltip, { getBuildStyleTooltip } from "./Tooltip";
 
 interface Props {
   paddle: Paddle;
@@ -76,7 +77,15 @@ export default function PaddleCard({ paddle, onClick, selected, onAdd, compact }
             <div className="flex flex-wrap gap-1.5 mb-3">
               {p.shape && <span className="text-xs px-2 py-0.5 rounded-full bg-gray-100 text-gray-600">{p.shape.trim()}</span>}
               {p.paddle_type && <span className="text-xs px-2 py-0.5 rounded-full bg-lime-50 text-lime-700">{p.paddle_type}</span>}
-              {p.build_style && <span className="text-xs px-2 py-0.5 rounded-full bg-gray-100 text-gray-600">{p.build_style}</span>}
+              {p.build_style && (
+                getBuildStyleTooltip(p.build_style) ? (
+                  <Tooltip text={getBuildStyleTooltip(p.build_style)!}>
+                    <span className="text-xs px-2 py-0.5 rounded-full bg-gray-100 text-gray-600">{p.build_style}</span>
+                  </Tooltip>
+                ) : (
+                  <span className="text-xs px-2 py-0.5 rounded-full bg-gray-100 text-gray-600">{p.build_style}</span>
+                )
+              )}
             </div>
             <div className="grid grid-cols-3 gap-2 text-center">
               <StatMini label="SW" value={p.swingweight} />

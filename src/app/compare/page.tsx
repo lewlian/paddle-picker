@@ -3,6 +3,7 @@ import { useState, useMemo, useEffect } from "react";
 import paddlesRaw from "@/data/paddles.json";
 import { Paddle, num, formatStat, statLabels } from "@/types/paddle";
 import { PaddleImage } from "@/components/PaddleCard";
+import Tooltip, { getStatTooltip, getBuildStyleTooltip } from "@/components/Tooltip";
 
 const paddles = paddlesRaw as Paddle[];
 
@@ -258,7 +259,11 @@ export default function ComparePage() {
                 const bw = getBestWorst(key);
                 return (
                   <div key={key} className="flex gap-4 items-center py-2.5 border-b border-gray-50 hover:bg-gray-50/50 transition-colors">
-                    <div className="w-36 shrink-0 text-sm text-gray-500 font-medium">{statLabels[key]}</div>
+                    <div className="w-36 shrink-0 text-sm text-gray-500 font-medium">
+                      {getStatTooltip(key) ? (
+                        <Tooltip text={getStatTooltip(key)!}>{statLabels[key]}</Tooltip>
+                      ) : statLabels[key]}
+                    </div>
                     {selected.map((p, idx) => {
                       const val = p[key];
                       const isBest = bw?.bestIdx === idx;
@@ -270,7 +275,9 @@ export default function ComparePage() {
                             isBest ? "bg-lime-100 text-lime-700" : isWorst ? "bg-red-50 text-red-500" : "text-gray-700"
                           }`}
                         >
-                          {formatStat(key, val || "")}
+                          {key === "build_style" && val && getBuildStyleTooltip(val) ? (
+                          <Tooltip text={getBuildStyleTooltip(val)!}>{formatStat(key, val)}</Tooltip>
+                        ) : formatStat(key, val || "")}
                           {isBest && " ✓"}
                         </div>
                       );
