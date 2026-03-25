@@ -74,49 +74,48 @@ export default function Home() {
     <div>
       {/* Bento Grid Hero */}
       <section className="max-w-6xl mx-auto px-4 pt-10 pb-16">
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-4 auto-rows-[220px] md:auto-rows-[240px]">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-3 sm:gap-4">
           {/* Large Hero Card */}
-          <div className="md:col-span-2 md:row-span-2 bg-[#F2B63C] rounded-3xl p-8 sm:p-10 flex flex-col justify-between relative overflow-hidden">
+          <div className="md:col-span-2 md:row-span-2 bg-[#F2B63C] rounded-2xl sm:rounded-3xl p-6 sm:p-10 flex flex-col justify-between relative overflow-hidden min-h-[280px] md:min-h-[500px]">
             <div className="relative z-10">
-              <div className="inline-flex items-center gap-1.5 bg-[#1A4D2E] text-white text-xs font-semibold px-3 py-1.5 rounded-full mb-4">
+              <div className="inline-flex items-center gap-1.5 bg-[#1A4D2E] text-white text-[10px] sm:text-xs font-semibold px-2.5 sm:px-3 py-1 sm:py-1.5 rounded-full mb-3 sm:mb-4">
                 ✦ 437+ Paddles
               </div>
-              <h1 className="font-display text-4xl sm:text-5xl lg:text-6xl font-bold text-[#1A1A1A] leading-[1.1] mb-4">
+              <h1 className="font-display text-3xl sm:text-5xl lg:text-6xl font-bold text-[#1A1A1A] leading-[1.1] mb-3 sm:mb-4">
                 FIND YOUR<br />PERFECT<br />PADDLE
               </h1>
-              <p className="text-[#1A1A1A]/70 text-base sm:text-lg max-w-md mb-6">
+              <p className="text-[#1A1A1A]/70 text-sm sm:text-lg max-w-md mb-4 sm:mb-6">
                 Search, compare specs, or take our quiz to discover your ideal pickleball paddle.
               </p>
-              <div className="flex flex-wrap gap-3">
-                <Link href="/quiz" className="inline-flex items-center gap-2 bg-[#1A4D2E] text-white font-semibold px-7 py-3 rounded-full hover:bg-[#153D24] transition-colors shadow-warm">
+              <div className="flex flex-wrap gap-2 sm:gap-3">
+                <Link href="/quiz" className="inline-flex items-center gap-2 bg-[#1A4D2E] text-white font-semibold text-sm px-5 sm:px-7 py-2.5 sm:py-3 rounded-full hover:bg-[#153D24] transition-colors shadow-warm">
                   Take the Quiz ✦
                 </Link>
-                <Link href="/search" className="inline-flex items-center gap-2 bg-white/60 text-[#1A1A1A] font-semibold px-7 py-3 rounded-full hover:bg-white/80 transition-colors">
+                <Link href="/search" className="inline-flex items-center gap-2 bg-white/60 text-[#1A1A1A] font-semibold text-sm px-5 sm:px-7 py-2.5 sm:py-3 rounded-full hover:bg-white/80 transition-colors">
                   Browse All →
                 </Link>
               </div>
             </div>
-            <div className="absolute bottom-4 right-6 text-8xl opacity-20 select-none">🥒</div>
+            <div className="absolute bottom-4 right-4 sm:right-6 text-6xl sm:text-8xl opacity-20 select-none">🥒</div>
           </div>
 
-          {/* Quiz Card */}
-          <Link href="/quiz" className="group bg-[#A8D4E6] rounded-3xl p-7 flex flex-col justify-between hover:shadow-warm-lg transition-all duration-300">
+          {/* Quiz + Compare cards in a row on mobile */}
+          <Link href="/quiz" className="group bg-[#A8D4E6] rounded-2xl sm:rounded-3xl p-5 sm:p-7 flex flex-col justify-between hover:shadow-warm-lg transition-all duration-300 min-h-[160px] md:min-h-0">
             <div>
-              <span className="text-xs font-semibold text-[#1A4D2E] uppercase tracking-wide">✧ Interactive</span>
-              <h2 className="font-display text-2xl font-bold text-[#1A1A1A] mt-2 leading-tight">QUIZ</h2>
-              <p className="text-[#1A1A1A]/60 text-sm mt-2">7 quick questions to find your perfect match</p>
+              <span className="text-[10px] sm:text-xs font-semibold text-[#1A4D2E] uppercase tracking-wide">✧ Interactive</span>
+              <h2 className="font-display text-xl sm:text-2xl font-bold text-[#1A1A1A] mt-1.5 sm:mt-2 leading-tight">QUIZ</h2>
+              <p className="text-[#1A1A1A]/60 text-xs sm:text-sm mt-1.5 sm:mt-2">7 quick questions to find your perfect match</p>
             </div>
-            <div className="text-[#1A4D2E] font-semibold text-sm group-hover:translate-x-1 transition-transform">Start Quiz →</div>
+            <div className="text-[#1A4D2E] font-semibold text-xs sm:text-sm mt-3 group-hover:translate-x-1 transition-transform">Start Quiz →</div>
           </Link>
 
-          {/* Compare Card */}
-          <Link href="/compare" className="group bg-[#E8845C] rounded-3xl p-7 flex flex-col justify-between hover:shadow-warm-lg transition-all duration-300">
+          <Link href="/compare" className="group bg-[#E8845C] rounded-2xl sm:rounded-3xl p-5 sm:p-7 flex flex-col justify-between hover:shadow-warm-lg transition-all duration-300 min-h-[160px] md:min-h-0">
             <div>
-              <span className="text-xs font-semibold text-white/80 uppercase tracking-wide">✧ Side by Side</span>
-              <h2 className="font-display text-2xl font-bold text-white mt-2 leading-tight">COMPARE</h2>
-              <p className="text-white/70 text-sm mt-2">Put up to 5 paddles head-to-head</p>
+              <span className="text-[10px] sm:text-xs font-semibold text-white/80 uppercase tracking-wide">✧ Side by Side</span>
+              <h2 className="font-display text-xl sm:text-2xl font-bold text-white mt-1.5 sm:mt-2 leading-tight">COMPARE</h2>
+              <p className="text-white/70 text-xs sm:text-sm mt-1.5 sm:mt-2">Put up to 5 paddles head-to-head</p>
             </div>
-            <div className="text-white font-semibold text-sm group-hover:translate-x-1 transition-transform">Compare Now →</div>
+            <div className="text-white font-semibold text-xs sm:text-sm mt-3 group-hover:translate-x-1 transition-transform">Compare Now →</div>
           </Link>
         </div>
       </section>
