@@ -20,6 +20,7 @@ export interface Paddle {
   power_mph: string;
   pop_mph: string;
   image_url?: string;
+  popularity_score?: string;
 }
 
 export function num(val: string): number {
