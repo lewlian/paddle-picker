@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
+import PromoBanner from "@/components/PromoBanner";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -25,6 +26,7 @@ export default function RootLayout({
   return (
     <html lang="en" className={`${geistSans.variable} ${geistMono.variable} h-full antialiased`}>
       <body className="min-h-full flex flex-col bg-[#FAF6F0] text-[#1A1A1A]">
+        <PromoBanner />
         <nav className="sticky top-0 z-50 bg-[#FAF6F0]/80 backdrop-blur-md border-b border-[#1A4D2E]/5">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between">
             <a href="/" className="flex items-center gap-1.5 hover:opacity-80 transition-opacity shrink-0">
