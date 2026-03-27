@@ -94,7 +94,12 @@ h1, h2, h3, h4, h5, h6, .font-display {
   box-shadow: 0 8px 30px rgba(26, 77, 46, 0.08), 0 2px 8px rgba(0,0,0,0.04);
 }
 
-/* Promo banner */
-.promo-banner {
-  transition: background 0.6s ease-in-out;
+/* Promo carousel */
+.promo-carousel {
+  transition: background 0.5s ease-in-out;
+}
+
+@keyframes promoProgress {
+  from { width: 0%; }
+  to { width: 100%; }
 }

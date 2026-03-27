@@ -26,7 +26,6 @@ export default function RootLayout({
   return (
     <html lang="en" className={`${geistSans.variable} ${geistMono.variable} h-full antialiased`}>
       <body className="min-h-full flex flex-col bg-[#FAF6F0] text-[#1A1A1A]">
-        <PromoBanner />
         <nav className="sticky top-0 z-50 bg-[#FAF6F0]/80 backdrop-blur-md border-b border-[#1A4D2E]/5">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between">
             <a href="/" className="flex items-center gap-1.5 hover:opacity-80 transition-opacity shrink-0">
@@ -51,6 +50,7 @@ export default function RootLayout({
             </div>
           </div>
         </nav>
+        <PromoBanner />
         <main className="flex-1">{children}</main>
         <footer className="border-t border-[#1A4D2E]/5 py-8 text-center text-sm text-[#6B6B6B]">
           <span className="font-display">🥒 Wikipickle</span> — Built for pickleball lovers ✦
