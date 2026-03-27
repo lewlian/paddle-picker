@@ -164,52 +164,41 @@ export default function PromoBanner() {
             </div>
           </div>
 
-          {/* Nav arrows + dots */}
-          <div className="hidden sm:flex flex-col items-center gap-3 shrink-0">
-            <button
-              onClick={(e) => {
-                e.preventDefault();
-                e.stopPropagation();
-                goTo((current - 1 + promos.length) % promos.length);
-              }}
-              className="w-8 h-8 rounded-full bg-white/10 hover:bg-white/20 flex items-center justify-center text-white/60 hover:text-white transition-all text-sm"
-              aria-label="Previous promo"
-            >
-              ‹
-            </button>
-            <div className="flex flex-col gap-1.5">
-              {promos.map((_, i) => (
-                <button
-                  key={i}
-                  onClick={(e) => {
-                    e.preventDefault();
-                    e.stopPropagation();
-                    goTo(i);
-                  }}
-                  className="w-2 h-2 rounded-full transition-all duration-300"
-                  style={{
-                    background:
-                      i === current ? "#FFFFFF" : "rgba(255,255,255,0.3)",
-                    transform: i === current ? "scale(1.4)" : "scale(1)",
-                  }}
-                  aria-label={`Show ${promos[i].brand} promo`}
-                />
-              ))}
-            </div>
-            <button
-              onClick={(e) => {
-                e.preventDefault();
-                e.stopPropagation();
-                next();
-              }}
-              className="w-8 h-8 rounded-full bg-white/10 hover:bg-white/20 flex items-center justify-center text-white/60 hover:text-white transition-all text-sm"
-              aria-label="Next promo"
-            >
-              ›
-            </button>
-          </div>
         </div>
       </a>
+
+      {/* Nav arrows + dots — bottom center */}
+      <div className="flex items-center justify-center gap-3 pb-3 -mt-1">
+        <button
+          onClick={() => goTo((current - 1 + promos.length) % promos.length)}
+          className="w-7 h-7 rounded-full bg-white/10 hover:bg-white/20 flex items-center justify-center text-white/60 hover:text-white transition-all text-sm"
+          aria-label="Previous promo"
+        >
+          ‹
+        </button>
+        <div className="flex items-center gap-2">
+          {promos.map((_, i) => (
+            <button
+              key={i}
+              onClick={() => goTo(i)}
+              className="w-2 h-2 rounded-full transition-all duration-300"
+              style={{
+                background:
+                  i === current ? "#FFFFFF" : "rgba(255,255,255,0.3)",
+                transform: i === current ? "scale(1.4)" : "scale(1)",
+              }}
+              aria-label={`Show ${promos[i].brand} promo`}
+            />
+          ))}
+        </div>
+        <button
+          onClick={next}
+          className="w-7 h-7 rounded-full bg-white/10 hover:bg-white/20 flex items-center justify-center text-white/60 hover:text-white transition-all text-sm"
+          aria-label="Next promo"
+        >
+          ›
+        </button>
+      </div>
     </div>
   );
 }
