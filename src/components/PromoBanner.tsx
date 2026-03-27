@@ -379,14 +379,14 @@ function ClubSlide({
               className="inline-flex items-center gap-2 font-semibold text-sm px-4 sm:px-5 py-2 rounded-full transition-all hover:scale-105 hover:shadow-lg"
               style={{
                 background:
-                  link.icon === "whatsapp" ? "#25D366" : slide.accent,
+                  link.icon === "whatsapp" ? "#25D366" : "#FFB800",
                 color: link.icon === "whatsapp" ? "#FFFFFF" : "#1A1A1A",
               }}
             >
               {link.icon === "whatsapp" ? (
                 <WhatsAppIcon size={16} />
               ) : (
-                <ReclubIcon size={16} />
+                <img src="/reclub-logo.png" alt="Reclub" className="w-5 h-5 rounded-sm object-cover" />
               )}
               {link.label}
             </a>
