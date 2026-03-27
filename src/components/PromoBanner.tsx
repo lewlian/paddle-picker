@@ -78,10 +78,10 @@ const slides: PromoSlide[] = [
     headline: "JOIN LSS ACADEMY",
     tagline: "Play with us in Sengkang! Weekday mornings, 7 \u2013 10 AM.",
     detail: "Mon \u2013 Fri \u00b7 Subject to court availability",
-    bgFrom: "#0F4C3A",
-    bgTo: "#1A7A5C",
-    accent: "#5EEAD4",
-    badgeBg: "rgba(94,234,212,0.15)",
+    bgFrom: "#000000",
+    bgTo: "#1A1A1A",
+    accent: "#E8E0D0",
+    badgeBg: "rgba(232,224,208,0.15)",
     badgeText: "Community",
     links: [
       {
@@ -340,13 +340,13 @@ function ClubSlide({
   return (
     <div className="flex items-center gap-6 sm:gap-10">
       {/* LSS Logo — desktop */}
-      <div className="hidden md:block shrink-0 text-white">
-        <LSSLogo className="w-28 h-auto lg:w-36 drop-shadow-lg" />
+      <div className="hidden md:block shrink-0">
+        <img src="/lss-logo.png" alt="LSS Academy" className="w-32 lg:w-40 h-auto object-contain" />
       </div>
 
       {/* LSS Logo — mobile */}
-      <div className="md:hidden shrink-0 text-white">
-        <LSSLogo className="w-16 h-auto drop-shadow-lg" />
+      <div className="md:hidden shrink-0">
+        <img src="/lss-logo.png" alt="LSS Academy" className="w-20 h-auto object-contain" />
       </div>
 
       {/* Text */}
@@ -380,7 +380,7 @@ function ClubSlide({
               style={{
                 background:
                   link.icon === "whatsapp" ? "#25D366" : slide.accent,
-                color: link.icon === "whatsapp" ? "#FFFFFF" : "#0F4C3A",
+                color: link.icon === "whatsapp" ? "#FFFFFF" : "#1A1A1A",
               }}
             >
               {link.icon === "whatsapp" ? (
