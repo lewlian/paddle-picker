@@ -116,15 +116,19 @@ function ReclubIcon({ size = 18 }: { size?: number }) {
   );
 }
 
-function PickleballIcon() {
+function LSSLogo({ className = "" }: { className?: string }) {
   return (
-    <svg width="56" height="56" viewBox="0 0 56 56" fill="none" className="opacity-20 hidden sm:block">
-      <circle cx="28" cy="28" r="26" stroke="currentColor" strokeWidth="2" />
-      <circle cx="20" cy="20" r="2.5" fill="currentColor" />
-      <circle cx="36" cy="20" r="2.5" fill="currentColor" />
-      <circle cx="28" cy="28" r="2.5" fill="currentColor" />
-      <circle cx="20" cy="36" r="2.5" fill="currentColor" />
-      <circle cx="36" cy="36" r="2.5" fill="currentColor" />
+    <svg viewBox="0 0 200 80" fill="currentColor" className={className}>
+      {/* L */}
+      <path d="M8 8 L28 8 L22 58 L62 58 L60 68 L2 68 Z" />
+      {/* S (first) */}
+      <path d="M72 8 L122 8 L120 16 L80 16 L78 32 L116 32 L110 68 L60 68 L62 60 L102 60 L104 44 L66 44 Z" />
+      {/* S (second) */}
+      <path d="M128 8 L178 8 L176 16 L136 16 L134 32 L172 32 L166 68 L116 68 L118 60 L158 60 L160 44 L122 44 Z" />
+      {/* Claw slashes */}
+      <path d="M150 62 L190 42 L186 46 L152 64 Z" />
+      <path d="M156 66 L196 46 L192 50 L158 68 Z" />
+      <path d="M162 70 L200 52 L196 56 L164 72 Z" />
     </svg>
   );
 }
@@ -335,14 +339,15 @@ function ClubSlide({
 }) {
   return (
     <div className="flex items-center gap-6 sm:gap-10">
-      {/* Pickleball icon + emoji — desktop */}
-      <div className="hidden md:flex flex-col items-center gap-1 shrink-0 text-white">
-        <PickleballIcon />
-        <span className="text-4xl lg:text-5xl mt-1">🏓</span>
+      {/* LSS Logo — desktop */}
+      <div className="hidden md:block shrink-0 text-white">
+        <LSSLogo className="w-28 h-auto lg:w-36 drop-shadow-lg" />
       </div>
 
-      {/* Mobile icon */}
-      <div className="md:hidden shrink-0 text-3xl">🏓</div>
+      {/* LSS Logo — mobile */}
+      <div className="md:hidden shrink-0 text-white">
+        <LSSLogo className="w-16 h-auto drop-shadow-lg" />
+      </div>
 
       {/* Text */}
       <div className="flex-1 min-w-0">
