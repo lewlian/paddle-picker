@@ -29,7 +29,18 @@ export default function Tooltip({ text, children }: TooltipProps) {
       {children}
       <span className="text-[#6B6B6B] text-[10px]">ⓘ</span>
       {show && (
-        <span className="absolute bottom-full left-1/2 -translate-x-1/2 mb-2 w-64 p-3 bg-[#1A4D2E] text-white text-xs leading-relaxed rounded-xl shadow-lg z-50 pointer-events-none animate-fade-in">
+        <span className="fixed bottom-auto left-auto mb-2 w-64 p-3 bg-[#1A4D2E] text-white text-xs leading-relaxed rounded-xl shadow-lg z-[100] pointer-events-none animate-fade-in"
+          style={{ position: 'fixed' }}
+          ref={(el) => {
+            if (el) {
+              const rect = el.parentElement?.getBoundingClientRect();
+              if (rect) {
+                el.style.left = `${Math.max(8, Math.min(rect.left + rect.width / 2 - 128, window.innerWidth - 272))}px`;
+                el.style.top = `${rect.top - el.offsetHeight - 8}px`;
+              }
+            }
+          }}
+        >
           {text}
           <span className="absolute top-full left-1/2 -translate-x-1/2 border-4 border-transparent border-t-[#1A4D2E]" />
         </span>

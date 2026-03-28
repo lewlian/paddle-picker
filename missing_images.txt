@@ -1,0 +1,67 @@
+BATCH 1 (21 paddles):
+  [14] Adidas Metalbone EVA 16mm (red no weights)
+  [83] Engage Pursuit Pro EX
+  [84] Engage Pursuit Pro EX 6.0
+  [85] Engage Pursuit Pro MX
+  [86] Engage Pursuit Pro MX 6.0
+  [87] Engage Pursuit Pro1 (Lite)
+  [88] Engage Pursuit Pro1 (Standard)
+  [89] Engage Pursuit Pro1 6.0 (Lite)
+  [90] Engage Pursuit Pro1 6.0 (Standard)
+  [91] Engage Pursuit Pro1 6.0 Hybrid
+  [92] Engage Pursuit Pro1 6.0 Widebody
+  [93] Engage Pursuit Pro1 Hybrid
+  [109] Franklin C45 Dynasty 14
+  [110] Franklin C45 Dynasty 16
+  [111] Franklin C45 Hybrid
+  [112] Franklin C45 Parris Todd
+  [113] Franklin C45 Tempo 14
+  [114] Franklin C45 Tempo 16
+  [115] Franklin Dynasty 12 Feather Weight
+  [116] Franklin FS Tour Dynasty (14mm)
+  [117] Franklin FS Tour Dynasty (16mm)
+
+BATCH 2 (21 paddles):
+  [118] Franklin FS Tour Tempo (14mm)
+  [119] Franklin FS Tour Tempo (16mm)
+  [120] Friday Aura E
+  [121] Friday Aura H
+  [122] Friday Aura Pro E
+  [123] Friday Aura W
+  [132] Gearbox CX14H Ultimate Power
+  [133] Gearbox GBX Power Elongated
+  [134] Gearbox GBX Power Hybrid
+  [161] Head Radical Pro 15
+  [162] Head Radical Pro EX 15
+  [163] Head Tour Radical Raw EX
+  [211] JOOLA Mod TA-15 (16mm)
+  [227] JOOLA  Hyperion 3S (16mm)
+  [228] JOOLA  Perseus 3S (16mm)
+  [238] Maverix Havik-15 All-Court
+  [239] Maverix Havik-15 Pro
+  [245] Paddletek Bantam ALW-C 12.7
+  [246] Paddletek Bantam ALW-C 14.3
+  [247] Paddletek Bantam ESQ-C 12.7
+  [248] Paddletek Bantam ESQ-C 14.3
+
+BATCH 3 (19 paddles):
+  [280] Proton Series 1 Type A Elongated 11mm
+  [281] Proton Series 1 Type A Elongated 15mm
+  [282] Proton Series 1 Type A Square Shape 11mm
+  [287] ProXR Zane Navtratil Signature
+  [294] Ronbus Pulsar FX.R1
+  [295] Ronbus Pulsar FX.R2
+  [296] Ronbus Pulsar FX.R3
+  [301] Ronbus Quanta R5
+  [302] Ronbus R1 Nova
+  [303] Ronbus R1 Pulsar
+  [304] Ronbus R1.16
+  [305] Ronbus R3 Nova
+  [306] Ronbus R3 Pulsar
+  [307] Ronbus R3.16
+  [312] RPM Friction Pro Elongated 16
+  [377] Technifibre TF-Blitz
+  [378] Technifibre TF-Command
+  [379] Technifibre TF-Select
+  [415] Vatic Pro  V-Sol Power V7 LH
+

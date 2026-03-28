@@ -176,7 +176,7 @@ export default function Home() {
       {selected && (
         <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/40 backdrop-blur-sm p-4" onClick={() => setSelected(null)}>
           <div
-            className="bg-[#FFFDF9] rounded-3xl shadow-2xl max-w-lg w-full max-h-[80vh] overflow-y-auto p-6 animate-slide-up"
+            className="bg-[#FFFDF9] rounded-3xl shadow-2xl max-w-lg w-full max-h-[80vh] overflow-y-auto overflow-x-hidden p-6 animate-slide-up scrollbar-thin"
             onClick={e => e.stopPropagation()}
           >
             <div className="mb-4">
