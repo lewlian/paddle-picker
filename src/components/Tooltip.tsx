@@ -1,5 +1,6 @@
 "use client";
-import { useState, useRef } from "react";
+import { useState, useRef, useEffect } from "react";
+import { createPortal } from "react-dom";
 
 interface TooltipProps {
   text: string;
@@ -8,6 +9,8 @@ interface TooltipProps {
 
 export default function Tooltip({ text, children }: TooltipProps) {
   const [show, setShow] = useState(false);
+  const [pos, setPos] = useState<{ top: number; left: number } | null>(null);
+  const triggerRef = useRef<HTMLSpanElement>(null);
   const timeoutRef = useRef<NodeJS.Timeout | null>(null);
 
   const handleEnter = () => {
@@ -19,8 +22,18 @@ export default function Tooltip({ text, children }: TooltipProps) {
     timeoutRef.current = setTimeout(() => setShow(false), 150);
   };
 
+  useEffect(() => {
+    if (show && triggerRef.current) {
+      const rect = triggerRef.current.getBoundingClientRect();
+      const left = Math.max(8, Math.min(rect.left + rect.width / 2 - 128, window.innerWidth - 272));
+      const top = rect.top - 8;
+      setPos({ top, left });
+    }
+  }, [show]);
+
   return (
     <span
+      ref={triggerRef}
       className="relative inline-flex items-center gap-1 cursor-help"
       onMouseEnter={handleEnter}
       onMouseLeave={handleLeave}
@@ -28,22 +41,15 @@ export default function Tooltip({ text, children }: TooltipProps) {
     >
       {children}
       <span className="text-[#6B6B6B] text-[10px]">ⓘ</span>
-      {show && (
-        <span className="fixed bottom-auto left-auto mb-2 w-64 p-3 bg-[#1A4D2E] text-white text-xs leading-relaxed rounded-xl shadow-lg z-[100] pointer-events-none animate-fade-in"
-          style={{ position: 'fixed' }}
-          ref={(el) => {
-            if (el) {
-              const rect = el.parentElement?.getBoundingClientRect();
-              if (rect) {
-                el.style.left = `${Math.max(8, Math.min(rect.left + rect.width / 2 - 128, window.innerWidth - 272))}px`;
-                el.style.top = `${rect.top - el.offsetHeight - 8}px`;
-              }
-            }
-          }}
+      {show && pos && typeof document !== "undefined" && createPortal(
+        <span
+          className="fixed w-64 p-3 bg-[#1A4D2E] text-white text-xs leading-relaxed rounded-xl shadow-lg z-[100] pointer-events-none animate-fade-in"
+          style={{ top: pos.top, left: pos.left, transform: "translateY(-100%)" }}
         >
           {text}
           <span className="absolute top-full left-1/2 -translate-x-1/2 border-4 border-transparent border-t-[#1A4D2E]" />
-        </span>
+        </span>,
+        document.body
       )}
     </span>
   );
