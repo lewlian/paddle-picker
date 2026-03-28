@@ -18,8 +18,9 @@ const buildStyles = unique(paddles.map(p => p.build_style));
 const paddleTypes = unique(paddles.map(p => p.paddle_type));
 const thicknesses = unique(paddles.map(p => p.core_thickness_mm));
 
-type SortKey = "paddle_name" | "brand" | "swingweight" | "twistweight" | "weight_oz" | "spin_rpm" | "power_mph" | "pop_mph" | "core_thickness_mm";
+type SortKey = "year_released" | "paddle_name" | "brand" | "swingweight" | "twistweight" | "weight_oz" | "spin_rpm" | "power_mph" | "pop_mph" | "core_thickness_mm";
 const sortOptions: { key: SortKey; label: string }[] = [
+  { key: "year_released", label: "Year" },
   { key: "paddle_name", label: "Name" },
   { key: "brand", label: "Brand" },
   { key: "swingweight", label: "Swingweight" },
@@ -39,8 +40,8 @@ export default function SearchPage() {
   const [buildStyle, setBuildStyle] = useState("");
   const [paddleType, setPaddleType] = useState("");
   const [thickness, setThickness] = useState("");
-  const [sortBy, setSortBy] = useState<SortKey>("paddle_name");
-  const [sortDir, setSortDir] = useState<"asc" | "desc">("asc");
+  const [sortBy, setSortBy] = useState<SortKey>("year_released");
+  const [sortDir, setSortDir] = useState<"asc" | "desc">("desc");
   const [selected, setSelected] = useState<Paddle | null>(null);
   const [showFilters, setShowFilters] = useState(false);
   const router = useRouter();
@@ -72,8 +73,9 @@ export default function SearchPage() {
     });
 
     result.sort((a, b) => {
-      const av = sortBy === "paddle_name" || sortBy === "brand" ? a[sortBy] : num(a[sortBy]);
-      const bv = sortBy === "paddle_name" || sortBy === "brand" ? b[sortBy] : num(b[sortBy]);
+      const isText = sortBy === "paddle_name" || sortBy === "brand";
+      const av = isText ? a[sortBy] : num(a[sortBy]);
+      const bv = isText ? b[sortBy] : num(b[sortBy]);
       if (av < bv) return sortDir === "asc" ? -1 : 1;
       if (av > bv) return sortDir === "asc" ? 1 : -1;
       return 0;
