@@ -1,5 +1,5 @@
 "use client";
-import { useState, useRef, useEffect } from "react";
+import { useState, useRef, useCallback } from "react";
 import { createPortal } from "react-dom";
 
 interface TooltipProps {
@@ -9,27 +9,31 @@ interface TooltipProps {
 
 export default function Tooltip({ text, children }: TooltipProps) {
   const [show, setShow] = useState(false);
-  const [pos, setPos] = useState<{ top: number; left: number } | null>(null);
   const triggerRef = useRef<HTMLSpanElement>(null);
+  const tooltipRef = useRef<HTMLSpanElement>(null);
   const timeoutRef = useRef<NodeJS.Timeout | null>(null);
+
+  const positionTooltip = useCallback(() => {
+    if (triggerRef.current && tooltipRef.current) {
+      const triggerRect = triggerRef.current.getBoundingClientRect();
+      const tooltipEl = tooltipRef.current;
+      const tooltipHeight = tooltipEl.offsetHeight;
+      const left = Math.max(8, Math.min(triggerRect.left + triggerRect.width / 2 - 128, window.innerWidth - 272));
+      const top = triggerRect.top - tooltipHeight - 8;
+      tooltipEl.style.left = `${left}px`;
+      tooltipEl.style.top = `${top}px`;
+    }
+  }, []);
 
   const handleEnter = () => {
     if (timeoutRef.current) clearTimeout(timeoutRef.current);
     setShow(true);
+    requestAnimationFrame(positionTooltip);
   };
 
   const handleLeave = () => {
     timeoutRef.current = setTimeout(() => setShow(false), 150);
   };
-
-  useEffect(() => {
-    if (show && triggerRef.current) {
-      const rect = triggerRef.current.getBoundingClientRect();
-      const left = Math.max(8, Math.min(rect.left + rect.width / 2 - 128, window.innerWidth - 272));
-      const top = rect.top - 8;
-      setPos({ top, left });
-    }
-  }, [show]);
 
   return (
     <span
@@ -37,14 +41,18 @@ export default function Tooltip({ text, children }: TooltipProps) {
       className="relative inline-flex items-center gap-1 cursor-help"
       onMouseEnter={handleEnter}
       onMouseLeave={handleLeave}
-      onTouchStart={() => setShow(!show)}
+      onTouchStart={() => {
+        setShow(!show);
+        if (!show) requestAnimationFrame(positionTooltip);
+      }}
     >
       {children}
       <span className="text-[#6B6B6B] text-[10px]">ⓘ</span>
-      {show && pos && typeof document !== "undefined" && createPortal(
+      {show && typeof document !== "undefined" && createPortal(
         <span
+          ref={tooltipRef}
           className="fixed w-64 p-3 bg-[#1A4D2E] text-white text-xs leading-relaxed rounded-xl shadow-lg z-[100] pointer-events-none animate-fade-in"
-          style={{ top: pos.top, left: pos.left, transform: "translateY(-100%)" }}
+          style={{ top: 0, left: 0 }}
         >
           {text}
           <span className="absolute top-full left-1/2 -translate-x-1/2 border-4 border-transparent border-t-[#1A4D2E]" />
