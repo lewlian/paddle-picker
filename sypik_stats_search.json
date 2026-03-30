@@ -1,0 +1,60 @@
+{
+  "search_summary": "Exhaustive search across web sources. Sypik is a Vietnamese brand with limited presence in US/Western paddle databases. The main databases (Matt's Pickleball, JohnKew, Pickleball Effect) are JS-rendered and couldn't be scraped. Most sources only have manufacturer specs (weight, dimensions), not independently tested swingweight/twistweight/power/pop data.",
+  "sources_checked": [
+    "mattspickleball.com (JS-rendered, couldn't extract data)",
+    "johnkewpickleball.com (JS-rendered, couldn't extract data)",
+    "pickleballeffect.com (JS-rendered, couldn't extract data)",
+    "pickleballstudio.com",
+    "mypicklelist.com",
+    "sportsshop.asia (SG retailer - had best specs)",
+    "sportsdeal.asia (MY retailer)",
+    "pickleplayglobal.com (VN retailer)",
+    "sypik.com (official, redirects to sypik.vn)",
+    "spinwavepickleball.com",
+    "mypickleball.com.au",
+    "Reddit r/Pickleball (multiple threads)",
+    "YouTube video descriptions",
+    "shop.sbpickleballshop.com"
+  ],
+  "Sypik Avatar Ultimate Pro Tour 16mm": {
+    "swingweight": "",
+    "twistweight": "",
+    "balance_point_mm": "240.3",
+    "spin_rpm": "1590",
+    "power_mph": "",
+    "pop_mph": "",
+    "source": "balance_point: sportsshop.asia (listed as 9.46 inches = ~240.3mm from butt end). spin_rpm: 1590 RPM from official Sypik packaging and sportsshop.asia listing. Reddit user tested similar Triton Pro 3 at 2300-2400 RPM (suggesting 1590 may understate actual spin). Swingweight described as 'Moderate' by mypickleball.com.au (qualitative only). Reddit comment says Triton Pro 3 tested at 'mid 90th percentiles for power and pop' which suggests Avatar is similar or better.",
+    "notes": "Gen 4 foam core (SYCORE All-Foam Core). Weight ~7.85-8.13oz (~222-226g). Elongated shape 16.5x7.4in. Handle 5.55in, grip 4.35in circumference."
+  },
+  "Sypik Triton Ultimate Pro Tour Gen 3 16mm": {
+    "swingweight": "",
+    "twistweight": "",
+    "balance_point_mm": "",
+    "spin_rpm": "",
+    "power_mph": "",
+    "pop_mph": "",
+    "source": "No independently tested stats found. Only manufacturer specs available from retailer sites. Reddit user tested spin at 2300-2400 RPM (this was specifically for this paddle). Same user said it tested at 'mid 90th percentiles for power and pop' on their testing setup.",
+    "notes": "Honeycomb core. Weight 7.8-8.2oz. T700 Carbon surface. 16.5x7.4in. Handle 5.55in, grip 4.35in."
+  },
+  "Sypik Triton 5 Ultimate Pro 16mm": {
+    "swingweight": "",
+    "twistweight": "",
+    "balance_point_mm": "",
+    "spin_rpm": "",
+    "power_mph": "",
+    "pop_mph": "",
+    "source": "No independently tested stats found. Only manufacturer specs from spinwavepickleball.com and sportsdeal.asia.",
+    "notes": "New Honeycomb Core (upgraded from Gen 3). Upgraded Raw Carbon Surface for more spin. Weight 8.0oz. 16.5x7.4in. Handle 5.55in, grip 4.35in. Metallic Gradient Edge."
+  },
+  "Sypik Triton Pro Gen 2": {
+    "swingweight": "",
+    "twistweight": "",
+    "balance_point_mm": "",
+    "spin_rpm": "",
+    "power_mph": "",
+    "pop_mph": "",
+    "source": "No independently tested stats found. Only manufacturer specs from pickleplayglobal.com and sypik.com. Reddit user praised it for 'really good swing weight' but no number given.",
+    "notes": "Polymer Honeycomb core. T700 Carbon surface. Weight 8.0oz. 16.5x7.4in. Handle 5.55in, grip 4.35in. 16mm thickness."
+  },
+  "recommendation": "The specific numeric stats (swingweight, twistweight, power mph, pop mph) are likely only available in the Matt's Pickleball and JohnKew databases which are JS-rendered. To get these, someone would need to manually look them up on those sites, or check if these Sypik paddles have even been tested by those labs. Sypik being a Vietnamese brand, they may not yet be in Western paddle databases. The only concrete numbers found were: Avatar balance point (240.3mm/9.46in) and spin RPM (1590 official, ~2300-2400 user-tested for Triton Gen 3)."
+}
