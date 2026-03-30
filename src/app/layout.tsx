@@ -56,7 +56,23 @@ export default function RootLayout({
         <PromoBanner />
         <main className="flex-1">{children}</main>
         <footer className="border-t border-[#1A4D2E]/5 py-8 text-center text-sm text-[#6B6B6B]">
-          <span className="font-display">🥒 Wikipickle</span> — Built for pickleball lovers ✦
+          <div className="mb-3">
+            <span className="font-display">🥒 Wikipickle</span> — Built for pickleball lovers ✦
+          </div>
+          <div className="flex items-center justify-center gap-4">
+            <a
+              href="mailto:seanlewtengsiong@gmail.com?subject=Wikipickle%20Feedback"
+              className="inline-flex items-center gap-1.5 px-4 py-1.5 rounded-full border border-[#1A4D2E]/10 text-xs font-medium text-[#1A4D2E] hover:bg-[#1A4D2E]/5 transition-colors"
+            >
+              💬 Feedback
+            </a>
+            <a
+              href="mailto:seanlewtengsiong@gmail.com?subject=Wikipickle%20Partnership%20Inquiry"
+              className="inline-flex items-center gap-1.5 px-4 py-1.5 rounded-full border border-[#1A4D2E]/10 text-xs font-medium text-[#1A4D2E] hover:bg-[#1A4D2E]/5 transition-colors"
+            >
+              🤝 Partner With Us
+            </a>
+          </div>
         </footer>
       </body>
     </html>
