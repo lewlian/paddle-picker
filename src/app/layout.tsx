@@ -17,12 +17,7 @@ export const metadata: Metadata = {
   title: "Wikipickle 🥒 — The Pickleball Paddle Encyclopedia",
   description: "Search, compare, and discover your ideal pickleball paddle from 400+ paddles. Take our quiz to find the perfect match.",
   icons: {
-    icon: [
-      { url: "/favicon.ico", sizes: "any" },
-      { url: "/icon-192.png", sizes: "192x192", type: "image/png" },
-      { url: "/icon-512.png", sizes: "512x512", type: "image/png" },
-    ],
-    apple: "/apple-touch-icon.png",
+    icon: "/icon.svg",
   },
 };
 
